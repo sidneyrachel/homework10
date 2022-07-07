@@ -29,7 +29,8 @@ def compute_square_root(matrix):
 
 
 def compute_d_bw(a, b):
-    subtraction = 2 * compute_square_root(np.matmul(np.matmul(compute_square_root(a), b), compute_square_root(a)))
+    square_root_a = compute_square_root(a)
+    subtraction = 2 * compute_square_root(np.matmul(np.matmul(square_root_a, b), square_root_a))
 
     return math.sqrt(np.trace(a + b - subtraction))
 
