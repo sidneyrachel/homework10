@@ -49,7 +49,7 @@ def compute_d_2(a, b):
 
 
 if __name__ == '__main__':
-    n = 5
+    n = 3
 
     matrix = generate_spd_matrix(n)
     print('Candidate matrix:')
