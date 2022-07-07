@@ -59,11 +59,11 @@ if __name__ == '__main__':
     a = generate_spd_matrix(n)
     b = generate_spd_matrix(n)
 
-    print('a:')
+    print('A:')
     print(a)
 
-    print('b:')
+    print('B:')
     print(b)
 
-    print('2.2.1. d_bw:', compute_d_bw(a, b))
-    print('2.2.2. d_2:', compute_d_2(a, b))
+    print('d_bw(A,B):', compute_d_bw(a, b))
+    print('d_2(A,B):', compute_d_2(a, b))
