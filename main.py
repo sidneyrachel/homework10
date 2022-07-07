@@ -12,13 +12,16 @@ def compute_eigvals(matrix):
 
 
 def is_spd(matrix):
-    return np.all(matrix == matrix.transpose()) and np.all(compute_eigvals(matrix) > 0)
+    return np.allclose(matrix, matrix.transpose()) and np.all(compute_eigvals(matrix) > 0)
 
 
 def generate_spd_matrix(n):
-    matrix = generate_random_matrix(n)
+    rand_matrix = generate_random_matrix(n)
+    spsd_matrix = np.matmul(rand_matrix.transpose(), rand_matrix)
+    u, _, vt = np.linalg.svd(spsd_matrix)
+    spd_matrix = np.matmul(np.matmul(u, 1 + np.diag(np.random.random(n))), vt)
 
-    return np.matmul(matrix.transpose(), matrix)
+    return spd_matrix
 
 
 def compute_square_root(matrix):
@@ -48,9 +51,10 @@ def compute_d_2(a, b):
 if __name__ == '__main__':
     n = 5
 
-    matrix = generate_random_matrix(n)
-    cand_spd_matrix = np.matmul(matrix.transpose(), matrix)
-    print('2.1.:', is_spd(cand_spd_matrix))
+    matrix = generate_spd_matrix(n)
+    print('Candidate matrix:')
+    print(matrix)
+    print('Is SPD:', is_spd(matrix))
 
     a = generate_spd_matrix(n)
     b = generate_spd_matrix(n)
