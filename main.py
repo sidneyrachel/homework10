@@ -12,7 +12,8 @@ def compute_eigvals(matrix):
 
 
 def is_spd(matrix):
-    return np.allclose(matrix, matrix.transpose()) and np.all(compute_eigvals(matrix) > 0)
+    return np.allclose(matrix, matrix.transpose()) and \
+           np.all(compute_eigvals(matrix) > 0)
 
 
 def generate_spd_matrix(n):
@@ -30,7 +31,9 @@ def compute_square_root(matrix):
 
 def compute_d_bw(a, b):
     square_root_a = compute_square_root(a)
-    subtraction = 2 * compute_square_root(np.matmul(np.matmul(square_root_a, b), square_root_a))
+    subtraction = 2 * compute_square_root(
+        np.matmul(np.matmul(square_root_a, b), square_root_a)
+    )
 
     return math.sqrt(np.trace(a + b - subtraction))
 
